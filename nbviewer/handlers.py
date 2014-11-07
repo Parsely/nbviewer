@@ -315,11 +315,11 @@ class BaseHandler(web.RequestHandler):
         - custom headers are not used
         """
         request_time = self.request.request_time()
-        # set cache expiry to 120x request time
+        # set cache expiry to 30x request time
         # bounded by cache_expiry_min,max
         # a 30 second render will be cached for an hour
         expiry = max(
-            min(120 * request_time, self.cache_expiry_max),
+            min(30 * request_time, self.cache_expiry_max),
             self.cache_expiry_min,
         )
 
@@ -755,6 +755,7 @@ class GitHubRepoHandler(BaseHandler):
 
 class GitHubTreeHandler(BaseHandler):
     """list files in a github repo (like github tree)"""
+    @cached
     @gen.coroutine
     def get(self, user, repo, ref, path):
         if not self.request.uri.endswith('/'):
