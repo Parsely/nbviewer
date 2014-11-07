@@ -48,18 +48,10 @@ here = os.path.dirname(__file__)
 pjoin = os.path.join
 
 def nrhead():
-    try:
-        import newrelic.agent
-    except ImportError:
-        return ''
-    return newrelic.agent.get_browser_timing_header()
+    return ''
 
 def nrfoot():
-    try:
-        import newrelic.agent
-    except ImportError:
-        return ''
-    return newrelic.agent.get_browser_timing_footer()
+    return ''
 
 this_dir, this_filename = os.path.split(__file__)
 FRONTPAGE_JSON = os.path.join(this_dir, "frontpage.json")
