@@ -755,7 +755,6 @@ class GitHubRepoHandler(BaseHandler):
 
 class GitHubTreeHandler(BaseHandler):
     """list files in a github repo (like github tree)"""
-    @cached
     @gen.coroutine
     def get(self, user, repo, ref, path):
         if not self.request.uri.endswith('/'):
